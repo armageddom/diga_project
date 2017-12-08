@@ -11,7 +11,7 @@ function getRegion()
 
             const regions = response.data.map(region => {
                
-                 console.log(region);
+                 //console.log(region);
                 return region;
             });
             resolve(regions);

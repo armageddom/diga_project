@@ -3,8 +3,12 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
 import Metsamittari from './components/Metsamittari';
 import data from './data/data';
+
+
+
 
 class App extends Component {
     
@@ -21,12 +25,20 @@ class App extends Component {
 
   componentDidMount()
   {
+      
+    
+   
+  
+
     data.getRegion().then(data => {
       this.setState({ Region: data });
     })
     .catch(error => {
       console.log("getRegions failed ", error);
     });
+      
+
+    
   }
     
     
@@ -38,10 +50,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="container">
-              <Metsamittari 
-                    regions={this.state.Region}
-                
-                        />
+              <Metsamittari regions={this.state.Region} />
         
         </div>
       </div>

@@ -1,23 +1,33 @@
 import React, { Component } from 'react'
+import './listItems.css';
+import Dropdown from 'react-dropdown'
 
 class ListItems extends Component {
     render () {
+        
+
+      
+        const {Region} = this.props;
+        
+       // var regions = Region.map[]
+        
+        const options = [
+              'one', 'two', 'three'
+            ]
+              
+        
+        console.log({Region});
         return (
+        
             
                <div className="row">
                     <div className="col-xs-4">
                         <h4> Aluetaso</h4>
-                            <div class="dropdown">
-                              <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                              </button>
-                              <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                
-                
-                              </ul>
-                            </div>
+
+                        <Dropdown options={options} onChange={this._onSelect}  placeholder="Select an option" />
             
                        <h4> Alue</h4>
+            
                             <div class="dropdown">
                               <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Dropdown trigger

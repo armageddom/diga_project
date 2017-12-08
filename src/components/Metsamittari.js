@@ -10,14 +10,14 @@ class Metsamittari extends Component {
 
         const {regions} = this.props;
 
+
         return (
             <div>
                 <AppHeader/>
-                {
-                    regions.map(region => <ListItems key={region.id}
-                                                            {...region}/> )
-                   
-                }
+            
+                <ListItems Region={regions}/>
+            
+            
 
                     
             </div>
