@@ -25,15 +25,25 @@ class App extends Component {
         Regíon: []
     };
       
-    this.handleLevelID = this.handleLevelID.bind(this);
+    this.ChangeID = this.ChangeID.bind(this);
 
       
 }
 
-    handleLevelID()  { (idValue) => {
-        this.setState({RegID: idValue});   
+    ChangeID(e)  { 
+        
+        var arrs = [];
+
+        for (var key in e) {
+              arrs.push(e[key]);
+            console.log(arrs);
+        }
+        
+      
+        this.setState({RegID: arrs});
+        
         } 
-                     }
+        
 
     componentDidMount()
     {
@@ -60,18 +70,19 @@ class App extends Component {
     
 
  
-    
+   
   render() {
+  
       
-        
       
     return (
       <div className="App">
         
         <div className="container">
-            <span>{this.state.RegID}</span>
-            <Metsamittari regionLevels={this.state.RegionLevel} regions={this.state.Regíon} onSelectLevel={this.handleLevelID} />
-            
+           <h2>{this.state.RegID}</h2>
+
+            <Metsamittari regionLevels={this.state.RegionLevel} regions={this.state.Regíon} onSelectLevel={this.ChangeID.bind(this)} />
+        
         </div>
       </div>
     );

@@ -1,16 +1,28 @@
 import React, { Component } from 'react'
+
 import './listItems.css';
-import Dropdown from 'react-dropdown'
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class ListItems extends Component {
     
-    constructor(props)
-    {
-        super(props);
-    }
-    
-    handleChange = (e) => {
+  constructor(props)
+  {
+    super(props);
+    this.state = { obj: null }
+      
+   
+    this.handleLevelID = this.handleLevelID.bind(this)
+  }
 
+  handleLevelID(e) {
+    
+        this.setState({obj: this.props.Levels[e.target.value].id})
+        
+     
+        this.props.LevelID({obj: this.props.Levels[e.target.value].id})
+        //console.log({obj: this.props.Levels[e.target.value].id})
+    
     }
 
     render () {
@@ -22,21 +34,10 @@ class ListItems extends Component {
        
         
 
-        const Aluetaso = Levels.map((taso) =>
-          <li key={taso.id}>
-            {taso.name}
-          </li> 
-           
-        );
         
         
 
-        
-        const Alue = Region.map((alue) =>
-          <li key={alue.id}>
-            {alue.name}
-          </li>
-        );
+
         
         
         return (
@@ -45,12 +46,21 @@ class ListItems extends Component {
                <div className="row">
                     <div className="col-xs-4">
                         <h4> Aluetaso</h4>
-
-                             <Dropdown options={Aluetaso} onChange={this.handleChange} placeholder="Select an option" />
+                                
+                                  <select name="form-field-name" onChange={this.handleLevelID}>
+                                    {this.props.Levels.map((option,id) =>
+                                        <option key={id} value={id}>
+                                            {option.name}
+                                        </option>
+                                     )}
+                                    
+                                  </select>
+                            
        
                        <h4> Alue</h4>
             
-                            <Dropdown options={Alue} onChange={this._onSelect} placeholder="Select an option" />
+                            
+            
                        <h4> Skenaariokokoelma</h4>
             
                             <div class="dropdown">
