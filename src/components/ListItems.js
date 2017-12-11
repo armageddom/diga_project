@@ -1,33 +1,46 @@
 import React, { Component } from 'react'
+import './listItems.css';
+import Dropdown from 'react-dropdown'
 
 class ListItems extends Component {
     render () {
+        
+
+      
+        const {Levels,Region} = this.props;
+       
+        
+
+        const Aluetaso = Levels.map((taso) =>
+          <li key={taso.id}>
+            {taso.name}
+          </li>
+        );
+        
+        
+
+        
+        const Alue = Region.map((alue) =>
+          <li key={alue.id}>
+            {alue.name}
+          </li>
+        );
+
+
+        
+      
         return (
+        
             
                <div className="row">
                     <div className="col-xs-4">
                         <h4> Aluetaso</h4>
-                            <div class="dropdown">
-                              <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                              </button>
-                              <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                
-                
-                              </ul>
-                            </div>
+
+                             <Dropdown options={Aluetaso} onChange={this._onSelect} placeholder="Select an option" />
             
                        <h4> Alue</h4>
-                            <div class="dropdown">
-                              <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown trigger
-                                <span class="caret"></span>
-                              </button>
-                              <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                ...
-                              </ul>
-                            </div>
             
+                            <Dropdown options={Alue} onChange={this._onSelect} placeholder="Select an option" />
                        <h4> Skenaariokokoelma</h4>
             
                             <div class="dropdown">

@@ -8,16 +8,16 @@ class Metsamittari extends Component {
 
     render () {
 
-        const {regions} = this.props;
+        const {regionLevels,regions} = this.props;
 
+        console.log({regionLevels});
         return (
             <div>
                 <AppHeader/>
-                {
-                    regions.map(region => <ListItems key={region.id}
-                                                            {...region}/> )
-                   
-                }
+            
+                <ListItems Levels={regionLevels} Region={regions} />
+            
+            
 
                     
             </div>

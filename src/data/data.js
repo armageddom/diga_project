@@ -4,14 +4,16 @@ import axios from 'axios';
 
 
 
-function getRegion()
+
+
+function getRegionLevel()
 {
     return new Promise((resolve, reject) => {
-        axios.get("http://melatupa.azurewebsites.net/regionLevels").then(response => {
+        axios.get("https://melatupa.azurewebsites.net/regionLevels").then(response => {
 
             const regions = response.data.map(region => {
                
-                 console.log(region);
+                
                 return region;
             });
             resolve(regions);
@@ -23,8 +25,35 @@ function getRegion()
     });
 }
 
+function getRegion()
+{
+    return new Promise((resolve, reject) => {
+        axios.get("https://melatupa.azurewebsites.net/regionLevels/2/regions").then(response => {
+
+            const deeps = response.data.map(deep => {
+               
+                 
+                return deep;
+            });
+            resolve(deeps);
+        })
+        .catch(error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
+
+
+
+
+
+
+
+
 
 
 export default {
-    getRegion
+    getRegionLevel,
+    getRegion  
 }
