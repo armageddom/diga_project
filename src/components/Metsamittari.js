@@ -5,17 +5,20 @@ import ListItems from './ListItems';
 
 
 class Metsamittari extends Component {
+    
+    
 
     render () {
 
-        const {regionLevels,regions} = this.props;
+        const {regionLevels,regions,onSelectLevel} = this.props;
 
-        console.log({regionLevels});
+        
+        console.log({onSelectLevel});
         return (
             <div>
                 <AppHeader/>
             
-                <ListItems Levels={regionLevels} Region={regions} />
+                <ListItems Levels={regionLevels} Region={regions} LevelID={onSelectLevel} />
             
             
 

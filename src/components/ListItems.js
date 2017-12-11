@@ -3,18 +3,30 @@ import './listItems.css';
 import Dropdown from 'react-dropdown'
 
 class ListItems extends Component {
+    
+    constructor(props)
+    {
+        super(props);
+    }
+    
+    handleChange = (e) => {
+
+    }
+
     render () {
         
-
-      
-        const {Levels,Region} = this.props;
+            
+        
+        
+        const {Levels,Region,LevelID} = this.props;
        
         
 
         const Aluetaso = Levels.map((taso) =>
           <li key={taso.id}>
             {taso.name}
-          </li>
+          </li> 
+           
         );
         
         
@@ -25,10 +37,8 @@ class ListItems extends Component {
             {alue.name}
           </li>
         );
-
-
         
-      
+        
         return (
         
             
@@ -36,8 +46,8 @@ class ListItems extends Component {
                     <div className="col-xs-4">
                         <h4> Aluetaso</h4>
 
-                             <Dropdown options={Aluetaso} onChange={this._onSelect} placeholder="Select an option" />
-            
+                             <Dropdown options={Aluetaso} onChange={this.handleChange} placeholder="Select an option" />
+       
                        <h4> Alue</h4>
             
                             <Dropdown options={Alue} onChange={this._onSelect} placeholder="Select an option" />
