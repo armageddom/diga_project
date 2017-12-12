@@ -10,8 +10,8 @@ class ListItems extends Component {
   {
     super(props);
     this.state = {  obj: null,
-                    obj1: null
-                 
+                    obj1: null,
+                    Scen:[]
                  }
       
    
@@ -31,21 +31,12 @@ class ListItems extends Component {
     }
     
       handleRegionID(e) {
-    
-        //this.setState({obj1: this.props.Regíon[e.target.value].id})
-        
-     
-        //this.props.LevelID({obj1: this.props.Levels[e.target.value].id})
-        //console.log({obj: this.props.Levels[e.target.value].id})
-    
+        this.setState({Scen: this.props.Region[e.target.value].scenarioCollections})
+        console.log({Scen: this.props.Region[e.target.value].scenarioCollections});
       }
     handleScrenarioID(e) {
     
-        //this.setState({obj1: this.props.Regíon[e.target.value].id})
-        
-     
-        //this.props.LevelID({obj1: this.props.Levels[e.target.value].id})
-        //console.log({obj: this.props.Levels[e.target.value].id})
+
     
       }
    
@@ -92,11 +83,11 @@ class ListItems extends Component {
             
                                  <select name="form-field-name" onChange={this.handleScrenarioID}>
                                    
-                                   {Region.map((Scen, id) =>
-                                        <option key={id} value={Scen}>
-                                                {Scen.name}
+                                        {this.state.Scen.map((option,id) =>
+                                        <option key={id} value={id}>
+                                            {option.name}
                                         </option>
-                                        )})}
+                                     )}
                                     
                                   </select>
                                      
