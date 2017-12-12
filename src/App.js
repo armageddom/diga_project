@@ -21,7 +21,7 @@ class App extends Component {
       
     this.state = {
         RegionLevel: [],
-        RegID: 0,
+        RegID: 1,
         Regíon: []
     };
       
@@ -42,20 +42,22 @@ class App extends Component {
       
         this.setState({RegID: arrs});
         
+        data.getRegion(this.state.RegID).then(data => {
+              this.setState({ Regíon: data });
+            })
+            .catch(error => {
+              console.log("getDeeper failed ", error);
+        });
+        
+        
+        
         } 
         
 
     componentDidMount()
     {
       
-    data.getRegion().then(data => {
-      this.setState({ Regíon: data });
-    })
-    .catch(error => {
-      console.log("getDeeper failed ", error);
-    });
-   
-  
+
 
     data.getRegionLevel().then(data => {
       this.setState({ RegionLevel: data });
@@ -65,10 +67,9 @@ class App extends Component {
     });
       
 
-    
   }
     
-
+    
  
    
   render() {
@@ -82,7 +83,7 @@ class App extends Component {
            <h2>{this.state.RegID}</h2>
 
             <Metsamittari regionLevels={this.state.RegionLevel} regions={this.state.Regíon} onSelectLevel={this.ChangeID.bind(this)} />
-        
+          
         </div>
       </div>
     );

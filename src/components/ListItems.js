@@ -9,10 +9,15 @@ class ListItems extends Component {
   constructor(props)
   {
     super(props);
-    this.state = { obj: null }
+    this.state = {  obj: null,
+                    obj1: null
+                 
+                 }
       
    
     this.handleLevelID = this.handleLevelID.bind(this)
+    this.handleRegionID = this.handleRegionID.bind(this)
+    this.handleScrenarioID = this.handleScrenarioID.bind(this)
   }
 
   handleLevelID(e) {
@@ -24,21 +29,35 @@ class ListItems extends Component {
         //console.log({obj: this.props.Levels[e.target.value].id})
     
     }
-
+    
+      handleRegionID(e) {
+    
+        //this.setState({obj1: this.props.Regíon[e.target.value].id})
+        
+     
+        //this.props.LevelID({obj1: this.props.Levels[e.target.value].id})
+        //console.log({obj: this.props.Levels[e.target.value].id})
+    
+      }
+    handleScrenarioID(e) {
+    
+        //this.setState({obj1: this.props.Regíon[e.target.value].id})
+        
+     
+        //this.props.LevelID({obj1: this.props.Levels[e.target.value].id})
+        //console.log({obj: this.props.Levels[e.target.value].id})
+    
+      }
+   
+    
+    
     render () {
         
-            
-        
-        
+
         const {Levels,Region,LevelID} = this.props;
        
         
-
-        
-        
-
-
-        
+   
         
         return (
         
@@ -58,21 +77,31 @@ class ListItems extends Component {
                             
        
                        <h4> Alue</h4>
-            
+
+                                <select name="form-field-name" onChange={this.handleRegionID}>
+                                    {this.props.Region.map((option,id) =>
+                                        <option key={id} value={id}>
+                                            {option.name}
+                                        </option>
+                                     )}
+                                    
+                                  </select>
                             
             
                        <h4> Skenaariokokoelma</h4>
             
-                            <div class="dropdown">
-                              <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown trigger
-                                <span class="caret"></span>
-                              </button>
-                              <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                ...
-                              </ul>
-                            </div>
-            
+                                 <select name="form-field-name" onChange={this.handleScrenarioID}>
+                                   
+                                   {Region.map((Scen, id) =>
+                                        <option key={id} value={Scen}>
+                                                {Scen.name}
+                                        </option>
+                                        )})}
+                                    
+                                  </select>
+                                     
+
+
                         <h4>Sekenaariot</h4>
             
                               <form class="form-horizontal" role="form">

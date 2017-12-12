@@ -2,7 +2,10 @@
 import axios from 'axios';
 
 
+var receivedID = 2;
 
+
+   
 
 
 
@@ -25,14 +28,17 @@ function getRegionLevel()
     });
 }
 
-function getRegion()
+function getRegion(luku)
 {
+   
+    
+
     return new Promise((resolve, reject) => {
-        axios.get("https://melatupa.azurewebsites.net/regionLevels/2/regions").then(response => {
+        axios.get("https://melatupa.azurewebsites.net/regionLevels/" + luku +"/regions").then(response => {
 
             const deeps = response.data.map(deep => {
                
-                 
+                console.log(deep); 
                 return deep;
             });
             resolve(deeps);
@@ -55,5 +61,6 @@ function getRegion()
 
 export default {
     getRegionLevel,
-    getRegion  
+    getRegion,
+    receivedID
 }
