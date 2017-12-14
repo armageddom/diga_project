@@ -51,7 +51,27 @@ function getRegion(luku)
 }
 
 
+function getScenario(regionID,ScrenarioID)
+{
+   
+    
 
+    return new Promise((resolve, reject) => {
+        axios.get("http://melatupa.azurewebsites.net/scenarioCollection/"+ ScrenarioID + "/region/" + regionID).then(response => {
+
+            const deeps = response.data.map(deep => {
+               
+                console.log(deep); 
+                return deep;
+            });
+            resolve(deeps);
+        })
+        .catch(error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+}
 
 
 
@@ -62,5 +82,6 @@ function getRegion(luku)
 export default {
     getRegionLevel,
     getRegion,
-    receivedID
+    receivedID,
+    getScenario
 }

@@ -22,7 +22,10 @@ class App extends Component {
     this.state = {
         RegionLevel: [],
         RegID: 1,
-        Regíon: []
+        LowerRegID:1,
+        Regíon: [],
+        Scenario: [],
+        ScenID: 0
     };
       
     this.ChangeID = this.ChangeID.bind(this);
@@ -53,6 +56,40 @@ class App extends Component {
         
         } 
         
+    GetScen(e,f) {
+        
+        
+        var arrs1 = [];
+
+        
+        for (var key in e) {
+              arrs1.push(e[key]);
+            console.log(arrs1);
+        }
+        
+        var arrs2 = [];
+        
+        for (var key1 in f) {
+            arrs2.push(f[key1]);
+            console.log(arrs2);
+        }
+        
+        this.setState({ScenID: arrs1});
+        this.setState({LowerRegID: arrs2});
+        
+        
+        
+        data.getRegion(this.state.LowerRegID,this.state.ScenID).then(data => {
+              this.setState({ Scenario: data });
+            })
+            .catch(error => {
+              console.log("getScens failed ", error);
+        });
+        
+        
+        
+        
+    }
 
     componentDidMount()
     {
@@ -79,10 +116,9 @@ class App extends Component {
     return (
       <div className="App">
         
-        <div className="container">
-           <h2>{this.state.RegID}</h2>
+        <div className="container"> 
 
-            <Metsamittari regionLevels={this.state.RegionLevel} regions={this.state.Regíon} onSelectLevel={this.ChangeID.bind(this)} />
+            <Metsamittari regionLevels={this.state.RegionLevel} regions={this.state.Regíon} onSelectLevel={this.ChangeID.bind(this)} ongetScenari={this.GetScen.bind(this)} />
           
         </div>
       </div>

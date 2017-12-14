@@ -11,7 +11,9 @@ class ListItems extends Component {
     super(props);
     this.state = {  obj: null,
                     obj1: null,
-                    Scen:[]
+                    Scen:[],
+                    LowerRegionID: null,
+                    ScenID: null
                  }
       
    
@@ -20,32 +22,32 @@ class ListItems extends Component {
     this.handleScrenarioID = this.handleScrenarioID.bind(this)
   }
 
-  handleLevelID(e) {
-    
+    handleLevelID(e) {
         this.setState({obj: this.props.Levels[e.target.value].id})
-        
-     
         this.props.LevelID({obj: this.props.Levels[e.target.value].id})
-        //console.log({obj: this.props.Levels[e.target.value].id})
+        console.log({obj: this.props.Levels[e.target.value].id})
+        }
     
-    }
-    
-      handleRegionID(e) {
+    handleRegionID(e) {
         this.setState({Scen: this.props.Region[e.target.value].scenarioCollections})
-        console.log({Scen: this.props.Region[e.target.value].scenarioCollections});
-      }
+        this.setState({LowerRegionID: this.props.Region[e.target.value].id})
+        
+        this.props.ScenarioID({LowerRegionID: this.props.Region[e.target.value].id})
+        console.log({LowerRegionID: this.props.Region[e.target.value].id});
+        }
+    
     handleScrenarioID(e) {
-    
-
-    
-      }
+        this.setState({ScenID: this.state.Scen[e.target.value].id})
+        this.props.ScenarioID({ScenID: this.state.Scen[e.target.value].id})
+        console.log({ScenID: this.state.Scen[e.target.value].id});
+        }
    
     
     
     render () {
         
 
-        const {Levels,Region,LevelID} = this.props;
+        const {Levels,Region,LevelID,ScenarioID} = this.props;
        
         
    
