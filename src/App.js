@@ -25,12 +25,12 @@ class App extends Component {
         LowerRegID:1,
         Regíon: [],
         Scenario: [],
-        ScenID: 0
+        ScenID: 1
     };
       
     this.ChangeID = this.ChangeID.bind(this);
-
-      
+    this.GetScen = this.GetScen.bind(this);
+    this.getLowRegId = this.getLowRegId.bind(this);
 }
 
     ChangeID(e)  { 
@@ -39,7 +39,7 @@ class App extends Component {
 
         for (var key in e) {
               arrs.push(e[key]);
-            console.log(arrs);
+            //console.log(arrs);
         }
         
       
@@ -56,30 +56,25 @@ class App extends Component {
         
         } 
         
-    GetScen(e,f) {
+    GetScen(f) {
         
         
-        var arrs1 = [];
 
-        
-        for (var key in e) {
-              arrs1.push(e[key]);
-            console.log(arrs1);
-        }
-        
         var arrs2 = [];
         
         for (var key1 in f) {
             arrs2.push(f[key1]);
-            console.log(arrs2);
+            //console.log(arrs2);
         }
         
-        this.setState({ScenID: arrs1});
-        this.setState({LowerRegID: arrs2});
+        
+          
+        this.setState({ScenID: arrs2});
         
         
         
-        data.getRegion(this.state.LowerRegID,this.state.ScenID).then(data => {
+    
+        data.getScenario(this.state.LowerRegID,this.state.ScenID).then(data => {
               this.setState({ Scenario: data });
             })
             .catch(error => {
@@ -89,6 +84,21 @@ class App extends Component {
         
         
         
+    }
+    
+    getLowRegId(e){
+        
+        var arrs1 = [];
+
+        
+        for (var key in e) {
+            arrs1.push(e[key]);
+            //console.log(arrs1);
+        }
+        
+        
+        this.setState({LowerRegID: arrs1});
+
     }
 
     componentDidMount()
@@ -117,8 +127,7 @@ class App extends Component {
       <div className="App">
         
         <div className="container"> 
-
-            <Metsamittari regionLevels={this.state.RegionLevel} regions={this.state.Regíon} onSelectLevel={this.ChangeID.bind(this)} ongetScenari={this.GetScen.bind(this)} />
+            <Metsamittari regionLevels={this.state.RegionLevel} regions={this.state.Regíon} onSelectLevel={this.ChangeID.bind(this)} ongetScenari={this.GetScen.bind(this)} ongetLowReg={this.getLowRegId.bind(this)} ScenarioData={this.state.Scenario}/>
           
         </div>
       </div>

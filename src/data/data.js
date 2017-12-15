@@ -38,7 +38,7 @@ function getRegion(luku)
 
             const deeps = response.data.map(deep => {
                
-                console.log(deep); 
+                //console.log(deep); 
                 return deep;
             });
             resolve(deeps);
@@ -54,6 +54,8 @@ function getRegion(luku)
 function getScenario(regionID,ScrenarioID)
 {
    
+    //console.log(regionID);
+    //console.log(ScrenarioID);
     
 
     return new Promise((resolve, reject) => {
@@ -61,7 +63,7 @@ function getScenario(regionID,ScrenarioID)
 
             const deeps = response.data.map(deep => {
                
-                console.log(deep); 
+                //console.log(deep); 
                 return deep;
             });
             resolve(deeps);

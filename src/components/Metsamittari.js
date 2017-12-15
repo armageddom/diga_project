@@ -13,11 +13,12 @@ class Metsamittari extends Component {
       
     this.state = { value: 0,
                     ScenidValue: 0,
-                    LoverRegValue: 0}
+                    LowerRegValue: 0}
       
    
     this.onSelectLevel = this.GetLevelID.bind(this)
     this.ongetScenari = this.GetScenarioID.bind(this)
+    this.ongetLowReg = this.GetLowReg.bind(this)
   }
     
     GetLevelID(asd)  { 
@@ -25,18 +26,25 @@ class Metsamittari extends Component {
         this.props.onSelectLevel(asd)
         } 
     
-    GetScenarioID(luku1,luku2)
+    GetScenarioID(luku1)
     {
         this.setState({ScenidValue: luku1});
-        this.setState({LoverRegValue: luku2});
-        this.props.ongetScenari(luku1,luku2)        
+        
+        //console.log(luku1,luku2);
+        this.props.ongetScenari(luku1)        
+    }
+    
+    GetLowReg(luku1){
+        
+        this.setState({LowerRegValue: luku1});
+        this.props.ongetLowReg(luku1)  
     }
         
 
    
     render () {
 
-        const {regionLevels,regions,onSelectLevel,ongetScenari} = this.props;
+        const {regionLevels,regions,onSelectLevel,ongetScenari,ScenarioData} = this.props;
 
         var arr = [];
         var scID = [];
@@ -50,18 +58,20 @@ class Metsamittari extends Component {
         
         for (var key2 in this.state.ScenidValue) {
               scID.push(this.state.ScenidValue[key2]);
+            //console.log(scID);
             }
         
-        for (var key3 in this.state.LoverRegValue) {
-              LowRegId.push(this.state.LoverRegValue[key3]);
+        for (var key3 in this.state.LowerRegValue) {
+              LowRegId.push(this.state.LowerRegValue[key3]);
+            //console.log(LowRegId);
+            
             }
         
         
         return (
             <div>
                 <AppHeader/>
-                <h2>{scID,LowRegId}</h2>
-                <ListItems Levels={regionLevels} Region={regions} LevelID={this.onSelectLevel.bind(this)} ScenarioID={this.ongetScenari.bind(this)}  />
+                <ListItems Levels={regionLevels} Region={regions} LevelID={this.onSelectLevel.bind(this)} ScenarioID={this.ongetScenari.bind(this)} LowReg={this.ongetLowReg.bind(this)} Scens={ScenarioData} />
                
             
 

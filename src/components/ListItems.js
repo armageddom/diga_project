@@ -13,50 +13,73 @@ class ListItems extends Component {
                     obj1: null,
                     Scen:[],
                     LowerRegionID: null,
-                    ScenID: null
+                    ScenID: null,
+                    FullScenario: [],
+                    Scenari: []
                  }
       
    
     this.handleLevelID = this.handleLevelID.bind(this)
     this.handleRegionID = this.handleRegionID.bind(this)
     this.handleScrenarioID = this.handleScrenarioID.bind(this)
+    this.LoadScenarios = this.LoadScenarios.bind(this)
   }
 
     handleLevelID(e) {
         this.setState({obj: this.props.Levels[e.target.value].id})
         this.props.LevelID({obj: this.props.Levels[e.target.value].id})
-        console.log({obj: this.props.Levels[e.target.value].id})
+        //console.log({obj: this.props.Levels[e.target.value].id})
         }
     
     handleRegionID(e) {
         this.setState({Scen: this.props.Region[e.target.value].scenarioCollections})
         this.setState({LowerRegionID: this.props.Region[e.target.value].id})
         
-        this.props.ScenarioID({LowerRegionID: this.props.Region[e.target.value].id})
-        console.log({LowerRegionID: this.props.Region[e.target.value].id});
+        this.props.LowReg({LowerRegionID: this.props.Region[e.target.value].id})
+        //console.log({LowerRegionID: this.props.Region[e.target.value].id});
         }
     
     handleScrenarioID(e) {
+        
         this.setState({ScenID: this.state.Scen[e.target.value].id})
         this.props.ScenarioID({ScenID: this.state.Scen[e.target.value].id})
-        console.log({ScenID: this.state.Scen[e.target.value].id});
+        //console.log({ScenID: this.state.Scen[e.target.value].id});
+        
+        if (this.state.ScenID =! null){
+            this.LoadScenarios();
+        
         }
+    }
    
-    
+    LoadScenarios(){
+        
+        var asd = [];
+        
+        console.log("called LoadScenarios")
+        this.setState({FullScenario: this.props.Scens})
+        console.log(this.state.FullScenario)
+        
+        asd = this.state.FullScenario.Scenarios
+        
+        this.setState({Scenari: asd})
+     
+    };
     
     render () {
         
 
-        const {Levels,Region,LevelID,ScenarioID} = this.props;
+        const {Levels,Region,LevelID,ScenarioID,LowReg,Scens} = this.props;
        
         
    
         
         return (
-        
+                
+            
             
                <div className="row">
                     <div className="col-xs-4">
+           
                         <h4> Aluetaso</h4>
                                 
                                   <select name="form-field-name" onChange={this.handleLevelID}>
